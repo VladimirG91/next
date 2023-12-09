@@ -1,5 +1,5 @@
 import Image from 'next/image';
-
+import styles from './Card.module.scss';
 interface Igame {
   id: string;
   title?: string;
@@ -14,9 +14,8 @@ interface Igame {
 
 const Card: React.FC<Igame> = ({ title, imageSrc }) => {
   return (
-    <div>
-      <h3>{title}</h3>
-      <Image src={imageSrc} alt="" width={300} height={300} />
+    <div className={styles.card}>
+      <Image src={imageSrc} alt="" width={300} height={400} className={styles.image} />
     </div>
   );
 };

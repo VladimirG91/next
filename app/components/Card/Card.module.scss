@@ -1,0 +1,83 @@
+.card {
+  position: relative;
+  width: 300px; /* Ширина вашей карточки */
+  height: 400px; /* Высота вашей карточки */
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 10px;
+  transition: box-shadow 0.7s ease; /* Плавный переход для свечения */
+
+  &:hover {
+    box-shadow: 0 0 30px rgba(255, 223, 0, 0.7); /* Свечение при наведении */
+  }
+
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease; /* Плавный переход для изображения */
+  }
+
+  &:hover .image {
+    transform: scale(1.03); /* Увеличение картинки при наведении */
+  }
+}
+
+.card:before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  top: -200%;
+  left: -40%;
+  opacity: 0.6;
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0),
+    #fff 47%,
+    rgba(255, 255, 255, 0.6) 53%,
+    rgba(255, 255, 255, 0)
+  );
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0),
+    #fff calc(50% - 10px),
+    rgba(255, 255, 255, 0.6) calc(50% + 10px),
+    rgba(255, 255, 255, 0)
+  );
+  -webkit-transform: rotate(-20deg);
+  transform: rotate(-20deg);
+}
+
+.card:hover:before {
+  top: 200%;
+  transition: top 0.4s cubic-bezier(0, 0.3, 1, 0.7);
+}
+
+@media (max-width: 1440px) {
+  .card {
+    width: 210px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 180px;
+    height: 260px;
+  }
+}
+@media (max-width: 425px) {
+  .card {
+    width: 150px;
+    height: 210px;
+  }
+}
+@media (max-width: 320px) {
+  .card {
+    width: 120px;
+    height: 190px;
+  }
+}

@@ -42,7 +42,7 @@ const Cards = () => {
       {error ? (
         <p>{error}</p>
       ) : (
-        <ul className="grid grid-cols-4 gap-2 p-5">
+        <ul className="grid grid-cols-2 gap-2 p-1 lg:p-5 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {games.map((game) => (
             <Card key={game.id} {...game} />
           ))}
