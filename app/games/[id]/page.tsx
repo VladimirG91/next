@@ -1,21 +1,26 @@
-import Card from '@/app/components/Card/Card';
+import Image from 'next/image';
+import { getGame } from '@/app/actions/getGame';
 
-export async function generateStaticParams() {
-  const games = await fetch('https://642c494a208dfe25472ca61d.mockapi.io/movies').then((res) =>
-    res.json(),
+interface IParams {
+  params: {
+    id: number;
+  };
+}
+async function Game({ params: { id } }: IParams) {
+  const game = await getGame(id);
+  return (
+    <div className="flex justify-center align-middle">
+      <Image src={game.imageSrc} alt={game.title} width={300} height={400} />
+      <div className="pl-10 w-1/2 text-white">
+        <h3 className="text-white text-3xl">{game.title}</h3>
+        <p>{game.description}</p>
+        <p>жанр: {game.genre}</p>
+        <p>дата релиза: {game.releaseDate}</p>
+        <p>страна: {game.country}</p>
+        <p>режиссер:{game.director}</p>
+      </div>
+    </div>
   );
-  console.log(games);
-  return games.map((game: any) => ({
-    id: game.title.replace(/\s+/g, '-'),
-  }));
 }
 
-const Games = ({ params }: any) => {
-  return (
-    <>
-      <div>game with id {params.id}</div>;
-    </>
-  );
-};
-
-export default Games;
+export default Game;
